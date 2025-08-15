@@ -30,6 +30,7 @@
 <body>
   <h2>Redirecting to MAGIS App...</h2>
   <div id="status">If you are not redirected automatically, tap the link below.</div>
+  <div id="invoice-info"></div>
   <div class="fallback" id="fallback"></div>
   <script>
     function getQueryParam(name) {
@@ -39,8 +40,13 @@
 
     const invoiceId = getQueryParam('invoice_id');
     const deeplink = invoiceId
-      ? `magis:/app/auth/app/auth/register-success?invoice_id=${encodeURIComponent(invoiceId)}`
-      : `magis:/app/auth/register-success`;
+      ? `magis://app/auth/register-success?invoice_id=${encodeURIComponent(invoiceId)}`
+      : `magis://app/auth/register-success`;
+
+    // Show invoice id if present
+    if (invoiceId) {
+      document.getElementById('invoice-info').textContent = `Invoice ID: ${invoiceId}`;
+    }
 
     // Try to open the app
     window.location = deeplink;
