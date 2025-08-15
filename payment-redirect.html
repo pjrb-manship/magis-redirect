@@ -48,14 +48,19 @@
       document.getElementById('invoice-info').textContent = `Invoice ID: ${invoiceId}`;
     }
 
+    // Print the deeplink on screen
+    const deeplinkInfo = document.createElement('div');
+    deeplinkInfo.textContent = `Deeplink: ${deeplink}`;
+    document.body.insertBefore(deeplinkInfo, document.getElementById('fallback'));
+
     // Try to open the app
     // window.location = deeplink;
 
     // Show fallback after 2 seconds
-    setTimeout(() => {
-      document.getElementById('fallback').innerHTML =
-        `Not opening? <a href="${deeplink}">Tap here to open the MAGIS app</a>.`;
-    }, 2000);
+    // setTimeout(() => {
+    //   document.getElementById('fallback').innerHTML =
+    //     `Not opening? <a href="${deeplink}">Tap here to open the MAGIS app</a>.`;
+    // }, 2000);
   </script>
 </body>
 </html>
