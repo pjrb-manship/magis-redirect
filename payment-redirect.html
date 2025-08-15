@@ -38,14 +38,14 @@
       return urlParams.get(name);
     }
 
-    const invoiceId = getQueryParam('invoice_id');
+    const id = getQueryParam('id');
     const deeplink = invoiceId
-      ? `magis://app/auth/register-success?invoice_id=${encodeURIComponent(invoiceId)}`
+      ? `magis://app/auth/register-success?id=${encodeURIComponent(id)}`
       : `magis://app/auth/register-success`;
 
     // Show invoice id if present
     if (invoiceId) {
-      document.getElementById('invoice-info').textContent = `Invoice ID: ${invoiceId}`;
+      document.getElementById('invoice-info').textContent = ` ID: ${id}`;
     }
 
     // Print the deeplink on screen
