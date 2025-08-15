@@ -39,8 +39,8 @@
 
     const invoiceId = getQueryParam('invoice_id');
     const deeplink = invoiceId
-      ? `exp://192.168.5.42:8081/--/auth/app/auth/register-success?invoice_id=${encodeURIComponent(invoiceId)}`
-      : `exp://192.168.5.42.8081/--/auth/register-success`;
+      ? `magis://app/auth/app/auth/register-success?invoice_id=${encodeURIComponent(invoiceId)}`
+      : `magis://app/auth/register-success`;
 
     // Try to open the app
     window.location = deeplink;
