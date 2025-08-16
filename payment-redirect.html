@@ -39,12 +39,12 @@
     }
 
     const id = getQueryParam('id');
-    const deeplink = invoiceId
+    const deeplink = id
       ? `magis://app/auth/register-success?id=${encodeURIComponent(id)}`
       : `magis://app/auth/register-success`;
 
     // Show invoice id if present
-    if (invoiceId) {
+    if (id) {
       document.getElementById('invoice-info').textContent = ` ID: ${id}`;
     }
 
@@ -54,7 +54,7 @@
     document.body.insertBefore(deeplinkInfo, document.getElementById('fallback'));
 
     // Try to open the app
-    window.location = deeplink;
+    // window.location = deeplink;
 
     // Show fallback after 2 seconds
     setTimeout(() => {
