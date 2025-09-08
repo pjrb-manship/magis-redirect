@@ -33,20 +33,24 @@
   <div id="reset-info"></div>
   <div class="fallback" id="fallback"></div>
   <script>
-    function getQueryParam(name) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(name);
+    function getHashParam(name) {
+      if (window.location.hash) {
+        const hash = window.location.hash.substring(1); // remove '#'
+        const params = new URLSearchParams(hash.replace(/&/g, '&'));
+        return params.get(name);
+      }
+      return null;
     }
 
-    // Supabase recovery uses 'token' param
-    const token = getQueryParam('token');
-    const deeplink = token
-      ? `magis://app/auth/forgot-password/new-password?token=${encodeURIComponent(token)}`
+    // Only use access_token from hash
+    const accessToken = getHashParam('access_token');
+    const deeplink = accessToken
+      ? `magis://app/auth/forgot-password/new-password?token=${encodeURIComponent(accessToken)}`
       : `magis://app/auth/forgot-password/new-password`;
 
     // Show token if present
-    if (token) {
-      document.getElementById('reset-info').textContent = `Recovery token: ${token}`;
+    if (accessToken) {
+      document.getElementById('reset-info').textContent = `Recovery token: ${accessToken}`;
     } else {
       document.getElementById('reset-info').textContent = 'No recovery token found.';
     }
@@ -67,3 +71,4 @@
   </script>
 </body>
 </html>
+https://pjrb-manship.github.io/magis-redirect/reset.html#access_token=eyJhbGciOiJIUzI1NiIsImtpZCI6ImNQdlk2bE9DZzFUNHJ6V2YiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3VpYW5tcXh5emNudG1pbm9iZGFuLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiJkODZkYjRmZi1iNjk3LTRiZGUtODIzZS00ZjM2ZGRhMjU5NmQiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzU3MzA5OTEyLCJpYXQiOjE3NTczMDYzMTIsImVtYWlsIjoicGpyYi5tYW5zaGlwQGdtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZW1haWxfdmVyaWZpZWQiOnRydWV9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6Im90cCIsInRpbWVzdGFtcCI6MTc1NzMwNjMxMn1dLCJzZXNzaW9uX2lkIjoiZTg3ZTMwNzktNTNmOS00MjNlLWFkOWEtOTZhODk2Njg2OTRlIiwiaXNfYW5vbnltb3VzIjpmYWxzZX0.Jrnu7oEbtbhBL6-0uJ1hsiHOLxRdAL5sNj8bWRrROSU&expires_at=1757309912&expires_in=3600&refresh_token=7di33q2m6mfu&token_type=bearer&type=recovery
