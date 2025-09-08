@@ -35,13 +35,11 @@
   <script>
     function getQueryParam(name) {
       const urlParams = new URLSearchParams(window.location.search);
-      console.log(urlParams)
       return urlParams.get(name);
     }
 
-    const token = getQueryParam('access_token');
-    console.log(token)    
-    const deeplink = id
+    const token = getQueryParam('access_token');   
+    const deeplink = token
       ? `magis://app/auth/forgot-password/new-password?token=${encodeURIComponent(token)}`
       : `magis://app/auth/forgot-password/new-password`;
 
