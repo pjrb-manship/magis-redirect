@@ -38,7 +38,7 @@
       return urlParams.get(name);
     }
 
-    const token = getQueryParam('token');
+    const token = getQueryParam('access_token');
     const deeplink = id
       ? `magis://app/auth/forgot-password/new-password?token=${encodeURIComponent(token)}`
       : `magis://app/auth/forgot-password/new-password`;
