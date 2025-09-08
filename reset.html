@@ -38,14 +38,17 @@
       return urlParams.get(name);
     }
 
-    const token = getQueryParam('access_token');   
+    // Supabase recovery uses 'token' param
+    const token = getQueryParam('token');
     const deeplink = token
       ? `magis://app/auth/forgot-password/new-password?token=${encodeURIComponent(token)}`
       : `magis://app/auth/forgot-password/new-password`;
 
-    // Show invoice id if present
+    // Show token if present
     if (token) {
-      document.getElementById('reset-info').textContent = ` TOKEN: ${token}`;
+      document.getElementById('reset-info').textContent = `Recovery token: ${token}`;
+    } else {
+      document.getElementById('reset-info').textContent = 'No recovery token found.';
     }
 
     // Print the deeplink on screen
